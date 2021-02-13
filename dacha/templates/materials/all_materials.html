@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <h1>All my materials</h1>
+    {% for material in materials %}
+        <h2>{{ material.title }}</h2>
+        <p>{{ material.body|truncatewords:5 }}</p>
+        Published: {{ material.publish }} by {{ material.author }}
+    {% endfor %}
+{% endblock %}
