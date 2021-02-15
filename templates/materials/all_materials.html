@@ -8,4 +8,7 @@
         <a href="{{ material.get_absolute_url }}">link to material</a>
         <p>Published: {{ material.publish }} by {{ material.author }}</p>
     {% endfor %}
+    <p>
+        <a href="{% url "dacha:create_form" %}">Create new material</a>
+    </p>
 {% endblock %}
