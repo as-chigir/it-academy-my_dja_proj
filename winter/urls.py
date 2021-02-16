@@ -18,5 +18,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dacha/', include('dacha.urls', namespace='dacha')),
+    path('', include('dacha.urls', namespace='dacha')),
 ]

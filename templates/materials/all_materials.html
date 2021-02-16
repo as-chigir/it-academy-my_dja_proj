@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %} All materials page {% endblock %}
 {% block content%}
-    <h1>All my materials</h1>
+    <h1>Мои материалы</h1>
     {% for material in materials %}
         <h2>{{ material.title }}</h2>
         <h3>{{ material.body|truncatewords:5 }}</h3>
-        <a href="{{ material.get_absolute_url }}">link to material</a>
+        <a href="{{ material.get_absolute_url }}">Ссылка на материал</a>
         <p>Published: {{ material.publish }} by {{ material.author }}</p>
     {% endfor %}
     <p>
-        <a href="{% url "dacha:create_form" %}">Create new material</a>
+        <a href="{% url "dacha:create_form" %}">Создать новый материал</a>
     </p>
 {% endblock %}

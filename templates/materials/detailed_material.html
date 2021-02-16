@@ -1,12 +1,27 @@
 {% extends "base.html" %}
 {% block title %} {{ material.title }}{% endblock %}
 {% block content %}
-    <a href="{% url "dacha:all_materials_" %}">BACK to all materials</a>
+    <a href="{% url "dacha:all_materials_" %}">НАЗАД к материалам</a>
     <h1>{{ material.title }}</h1>
     <p>{{ material.material_type }}</p>
     <p>{{ material.body }}</p>
-    <p>Published: {{ material.publish }} by {{ material.author }} <p>
+    <p>Опубликовано: {{ material.publish }} by {{ material.author }} <p>
 
-    <a href="{% url "dacha:share_material" material.id %}">Share material</a>
+    <a href="{% url "dacha:share_material" material.id %}">Поделиться материалом</a>
+
+    {% for comment in material.comments.all %}
+        {{ comment.body }} <br><br><br>
+    {% endfor %}
+
+    {# {% if new_comment %} #}
+    {# New comment was added #}
+    {# {% else %} #}
+        <form action="." method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Add comment">
+    </form>
+    {# {% endif %} #}
+
 
 {% endblock %}

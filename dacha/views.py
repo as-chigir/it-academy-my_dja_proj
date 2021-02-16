@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.core.mail import send_mail
 
@@ -39,8 +40,19 @@ def detailed_material(request, year, month, day, slug):
                                  publish__month=month,
                                  publish__day=day,
                                  slug=slug)
+    if request.method == "POST":
+        form = forms.CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.material = material
+            comment.save()
+            return redirect(material)
+    else:
+        form = forms.CommentForm(request.POST)
+
     return render(request, "materials/detailed_material.html",
-                  {'material': material})
+                  {'material': material,
+                   'form': form})
 
 
 def share_material(request, material_id):
