@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 
-from django.views.generic import ListView
+#  from django.views.generic import ListView
 
 from . import constants
 from . import forms

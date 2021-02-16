@@ -7,6 +7,16 @@
 <link href="{% static "styles.css" %}" rel="stylesheet">
 </head>
 <body>
+
+<p>
+{% if request.user.is_authenticated %}
+    Hi {{ request.user.first_name }}!
+    <a href="{% url "dacha:logout" %}">Logout</a>
+{% else %}
+    <a href="{% url "dacha:login" %}">Login</a>
+{% endif %}
+</p>
+
 {% block content%}
 {% endblock %}
 </body>

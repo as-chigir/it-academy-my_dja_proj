@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'dacha.apps.DachaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dacha.apps.DachaConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +121,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_URL = '/dacha/login/'
+LOGOUT_URL = '/dacha/logout/'
+
+LOGIN_REDIRECT_URL = '/dacha/'

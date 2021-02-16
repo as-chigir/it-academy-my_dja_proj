@@ -1,0 +1,9 @@
+
+{% extends "base.html" %}
+{% block title %} Logout page {% endblock %}
+
+{% block content %}
+    You've been logged out. You can login again: <br>
+    <a href="{% url "dacha:login" %}">Login</a>
+
+{% endblock %}
