@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'dacha'
 
@@ -40,4 +42,9 @@ urlpatterns = [
 
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
+    path('profile/', views.view_profile, name='profile'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

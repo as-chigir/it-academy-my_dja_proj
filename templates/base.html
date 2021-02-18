@@ -12,6 +12,7 @@
 {% if request.user.is_authenticated %}
     Hi {{ request.user.first_name }}!
     <a href="{% url "dacha:logout" %}">Logout</a>
+    <a href="{% url "dacha:profile" %}">Profile</a>
 {% else %}
     <a href="{% url "dacha:login" %}">Login</a>
 {% endif %}
