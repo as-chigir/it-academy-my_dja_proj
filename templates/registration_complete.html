@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} Регистрация завершена {% endblock %}
+
+{% block content %}
+
+    <h1>Hi {{ user.first_name }}</h1>
+    <p>Вы успешно зарегистрировались. Вы можете войти
+        <a href="{% url "dacha:login" %}">Login</a></p>
+{% endblock %}
