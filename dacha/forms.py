@@ -32,12 +32,25 @@ class UserRegistrationForm(forms.ModelForm):
                                widget=forms.PasswordInput)
     password2 = forms.CharField(label='Pass2',
                                 widget=forms.PasswordInput)
+
     class Meta:
         model = User
         fields = ('username', 'first_name', 'email')
 
     def clean_password2(self):  # совпадение паролей
         cd = self. cleaned_data
-        if cd ['password'] != cd['password2']:
+        if cd['password'] != cd['password2']:
             raise forms.ValidationError('bad password')
-        return cd ['password']
+        return cd['password']
+
+
+class UserEditForm(forms.ModelForm):  # форма для редактирования
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = models.Profile
+        fields = ('birth', 'photo')

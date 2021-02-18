@@ -2,7 +2,7 @@
 {% block title %} Личный профиль {% endblock %}
 {% block content %}
 
-    <a href="{% url "dacha:profile" %}"> Редактировать профиль </a>
+    <a href="{% url "dacha:edit_profile" %}"> Редактировать </a>
     <p>name: {{ user.first_name|add:user.last_name }}</p>
     <p>Birthday: {{ user.profile.birth }}</p>
     <p><img src = "{{ user.profile.photo.url }}" alt="alternate"></p>
