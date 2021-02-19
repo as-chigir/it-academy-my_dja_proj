@@ -56,3 +56,23 @@ class Profile(models.Model):
                                 on_delete=models.CASCADE)
     birth = models.DateTimeField(blank=True, null=True)
     photo = models.ImageField(upload_to="user/%Y/%m/%d", blank=True)
+
+
+class Lesson(models.Model):
+
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=255,
+                            unique=True)
+    notes = models.TextField()
+
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    materials = models.ManyToManyField(Material, related_name='lessons')
+
+    def __str__(self):
+        return self.title
+
+
+    def get_absolute_url(self):
+        return reverse('dacha:detailed_lesson',
+                       args=[self.slug])

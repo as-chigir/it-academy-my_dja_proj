@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} All lessons{% endblock %}
+{% block content %}
+    <h1> Все уроки </h1>
+    {% for lesson in lessons %}
+        <h3>{{ lesson.title }}</h3>
+        <p>
+            {{ lesson.body|truncatewords:5 }}
+        </p>
+        <a href="{{ lesson.get_absolute_url }}"> Ссылка на урок </a>
+    {% endfor %}
+{% endblock %}
+
+{% block menu %}
+    <h4> Уроки: </h4>
+    {% for lesson in lessons %}
+        <a class="nav-link active" href="{{ lesson.get_absolute_url }}">{{ lesson.title}}</a>
+    {% endfor %}
+    <h4> Материалы: </h4>
+        <a class="nav-link active" href="{% url "dacha:all_materials_" %}"> Все материалы </a>
+{% endblock %}

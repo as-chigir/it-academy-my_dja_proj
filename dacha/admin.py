@@ -5,6 +5,7 @@ from . import models
 admin.site.register(models.Comment)
 admin.site.register(models.Profile)
 
+
 @admin.register(models.Material)
 class MaterialAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'material_type', 'publish')
@@ -12,3 +13,8 @@ class MaterialAdmin(admin.ModelAdmin):
     search_fields = ('title', 'body')
     prepopulated_fields = {'slug': ('title', )}
     ordering = ('material_type', 'title')
+
+
+@admin.register(models.Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title', )}

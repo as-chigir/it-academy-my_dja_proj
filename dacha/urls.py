@@ -13,18 +13,19 @@ class MyHack(auth_views.PasswordResetView):
 
 
 urlpatterns = [
-    path('', views.all_materials_, name='all_materials_'),
+    path('material/', views.all_materials_, name='all_materials_'),
+    path('', views.all_lessons, name='all_lessons'),
     # path('', views.MaterialListView.as_view(), name='all_materials_'),
-    path('<int:year>/'
-         '<int:month>/'
-         '<int:day>/'
-         '<slug:slug>/',
-         views.detailed_material, name='detailed_material'),
-    path('<int:material_id>/'
-         'share/',
-         views.share_material, name='share_material'),
-    path('create/',
-         views.create_form, name='create_form'),
+    path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
+         views.detailed_material,
+         name='detailed_material'),
+
+    path('<int:material_id>/share/', views.share_material,
+         name='share_material'),
+    path('create/', views.create_form, name='create_form'),
+    path('<slug:slug>/',
+         views.detailed_lesson,
+         name='detailed_lesson'),
     # path('login/', views.custom_login, name='login'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -36,7 +37,7 @@ urlpatterns = [
 
     path('reset/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(
-             success_url=reverse_lazy('dacha:password_reset_complete'),
+             success_url=reverse_lazy('lesson:password_reset_complete'),
          ),
          name='password_reset_confirm'),
 

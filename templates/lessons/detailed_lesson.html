@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} {{ lesson.title }}{% endblock %}
+{% block content %}
+    <h1>{{ lesson.title }}</h1>
+    <p>{{ lesson.notes }}</p>
+    <h2> Материалы, входящие в занятие: </h2>
+    {% for material in lesson.materials.all %}
+        <h2>
+            <a href="{{ material.get_absolute_url }}">{{ material.title }}</a>
+        </h2>
+        {{ material.body|truncatewords:10 }}<br>
+        Published: {{ material.publish }} by {{ material.author }}
+    {% endfor %}
+{% endblock %}
+
+
+{% block menu %}
+    <h4> Урок: </h4>
+
+    {% for loop_lesson in lessons %}
+        {% if  loop_lesson == lesson%}  <!--#  тек.урок - активный, не тек.урок - не активный-->
+            <a class="nav-link disabled" href="{{ loop_lesson.get_absolute_url }}">{{ loop_lesson.title}}</a>
+        {% else %}
+            <a class="nav-link active" href="{{ loop_lesson.get_absolute_url }}">{{ loop_lesson.title}}</a>
+        {% endif %}
+
+    {% endfor %}
+    <h4> Материалы: </h4>
+        <a class="nav-link active" href="{% url "dacha:all_materials_" %}"> Все материалы: </a>
+{% endblock %}
